@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Регистрация</title>
+  <style> @font-face
+
+  h
+  {
+    font-family:'Calibri';
+    font-size: 20pt;
+  }
+  </style>
+</head>
+<body style="background-image:url(https://mobimg.b-cdn.net/v3/fetch/57/579fe0f795360bc8cd330d08e58777d4.jpeg)">
+<div style="background-color: bisque;margin:10% 25%; padding:3%;width:27%;height:30%">
+<h3 style="font-size: 20pt"><center> Регистрация</center></h3>
+<form method="post" th:action="@{/auth/registration}" th:object="${person}">
+  <label for="login">Введите логин: </label>
+  <input type="text"  th:field="*{login}" placeholder="Введите пароль" name="username" id="login">
+  <div style="color: red" th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></div>
+  <br>
+  <label for="password">Введите пароль: </label>
+  <input type="password" th:field="*{password}" placeholder="Введите пароль" name="password" id="password">
+  <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+  <br>
+  <input type="submit"   value="Зарегистрироваться" style="font-family:'Calibri Light';margin:10% 27% ">
+  </div>
+</form>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Авторизация</title>g
+</head>
+<body style="background-image:url(https://mobimg.b-cdn.net/v3/fetch/57/579fe0f795360bc8cd330d08e58777d4.jpeg)" >
+<h3 style="font-size:25pt;color:white"> <center> Экстремальное снаряжение </center></h3>
+<div style="float:left;margin:0%">
+    <form method="get" th:action="@{/product}">
+        <input type="submit" value="Хочу просто посмотреть"> </a> </form>
+</div>
+<div style="background-color: bisque;margin:10% 25%; padding:3%;width:27%;height:30%">
+
+    <h3><center>Вход</center></h3>
+
+<form method="post" action="/process_login">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+    <label for="username">Введите логин: </label>
+    <input type="text" placeholder="Введите пароль" name="username" id="username">
+    <br>
+    <label for="password">Введите пароль: </label>
+    <input type="password" placeholder="Введите пароль" name="password" id="password">
+    <br>
+    <div style="float:left;margin:2%">
+    <input type="submit" value="Войти"></div>
+        <div style="margin:2%"><a href="/auth/registration"><input type="button" value="Регистрация"></a></div>
+        <div th:if="${param.error}" style="color: red;margin:2%">
+        Неправильный логин или пароль
+    </div>
+
+</form>
+
+</body>
+</html>

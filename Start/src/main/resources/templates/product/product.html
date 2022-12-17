@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список товаров </title>
+    <style>
+
+        a {
+            text-decoration: none;
+        }
+        a:link, a:visited {
+            color: white;
+            font-size: 18pt}
+    </style>
+</head>
+
+<body style="background-image:url(https://mobimg.b-cdn.net/v3/fetch/57/579fe0f795360bc8cd330d08e58777d4.jpeg)">>
+<form th:method="POST" th:action="@{/product/search}">
+    <fieldset>
+        <legend>Выберите параметры для сортировки, поиска, фильтрации</legend>
+        <br>
+        <label for="search">Поиск по наименованию</label>
+        <input type="search" name="search"  th:value="*{value_search}" id="search">
+        <br>
+        <p>Цена, ₽</p>
+        <label for="ot">От</label>
+        <input type="text" name="ot"  th:value="*{value_price_ot}" id="ot">
+        <label for="do">До</label>
+        <input type="text" name="do"  th:value="*{value_price_do}" id="do">
+        <br>
+        <br>
+        <input type="radio" id="ascending_price" name="price" value="sorted_by_ascending_price">
+        <label for="ascending_price">Отсортировать по возрастанию цены</label>
+        <br>
+        <br>
+        <input type="radio" id="descending_price" name="price" value="sorted_by_descending_price">
+        <label for="descending_price">Отсортировать по убыванию цены</label>
+        <p>Категория товаров: </p>
+        <input type="radio" id="parachute" name="category" value="parachute">
+        <label for="parachute">Парашютный спорт</label>
+        <br>
+        <br>
+        <input type="radio" id="alpinist" name="category" value="alpinist">
+        <label for=alpinist>Альпинизм</label>
+        <br>
+        <br>
+        <input type="radio" id="diving" name="category" value="diving">
+        <label for="diving">Дайвинг</label>
+        <br>
+        <br>
+        <input type="submit" value="Найти">
+    </fieldset>
+    <h3>Результат: </h3>
+    <div th:each="product : ${search_product}">
+        <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
+        <br>
+        <br>
+        <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
+        <p th:text="'Цена: ' + ${product.getPrice()}"></p>
+    </div>
+    <hr>
+<h3>Доступные товары: </h3>
+<div th:each="product : ${products}">
+    <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
+    <br>
+    <br>
+    <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}" id="title"></a>
+    <p th:text="'Цена: ' + ${product.getPrice()}"></p>
+</div>
+ </body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Информация о товаре</title>
+</head>
+<body>
+<div style="width:300px">
+<form style="width:30%;margin:0% 60% 0% 0%">
+<p th:text="'Наименование: ' + ${product.getTitle()}"></p>
+<p th:text="'Описание: ' + ${product.getDescription()}"></p>
+<p th:text="'Цена: ' + ${product.getPrice()}"></p>
+<p th:text="'Склад: ' + ${product.getWarehouse()}"></p>
+<p th:text="'Продавец: ' + ${product.getSeller()}"></p>
+</form>
+</div>
+<form  th:each="img : ${product.getImageList()}"style="float:left" >
+
+    <img th:src="'/img/' + ${img.getFileName()}" width="300px"></div> </form>
+
+</body>
+</html>
